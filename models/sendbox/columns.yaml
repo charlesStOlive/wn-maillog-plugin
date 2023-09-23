@@ -1,0 +1,41 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    send_at:
+        label: waka.mailer::sendbox.send_at
+        type: datetime
+        searchable: true
+    state:
+        label: waka.mailer::sendbox.state
+        searchable: true
+    tos:
+        label: Email
+        searchable: false
+    maileable[name]:
+        label: Modèle
+        sortable: false
+        searchable: false
+    targeteable[name]:
+        label: Nom cible
+        sortable: false
+        searchable: false
+    name:
+        label: Sujet
+        searchable: true
+    lastlog:
+        label: waka.mailer::sendbox.lastlog
+        type: partial
+        searchable: false
+        sortable: false
+        path: ~/plugins/waka/mailer/models/sendbox/_column_state.htm
+    
+    has_pjs:
+        label: waka.mailer::sendbox.has_pjs
+        searchable: false
+        sortable: false
+    updated_at:
+        label: waka.utils::lang.global.updated_at
+        type: timetense
+        invisible: true

@@ -1,0 +1,15 @@
+columns:
+    name:
+        label: 'waka.mailer::maillog.name'
+        searchable: true
+    type:
+        label: 'waka.mailer::maillog.type'
+        type: partial
+        searchable: false
+        sortable: false
+        path: ~/plugins/waka/mailer/models/sendbox/_column_state.htm
+    updated_at:
+        label: 'waka.utils::lang.global.updated_at'
+        type: timetense
+    count:
+        label: NB
