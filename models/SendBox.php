@@ -263,14 +263,14 @@ class SendBox extends Model
             $this->save();
             return true;
         } catch (\Exception $ex) {
-            trace_log('j ai erreur');
+            //trace_log('j ai erreur');
             $this->state = 'Erreur';
             $this->meta = $th->getMessage();
             $this->save();
             throw $ex;
         } catch (\Throwable $th) {
             // Cela capturera les autres types d'erreurs, y compris TypeError, ParseError, etc.
-            trace_log('Erreur de type Throwable');
+            //trace_log('Erreur de type Throwable');
             $this->state = 'Erreur';
             $this->meta = $th->getMessage();
             $this->save();
