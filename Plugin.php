@@ -56,14 +56,6 @@ class Plugin extends PluginBase
     public function registerPermissions(): array
     {
         return []; // Remove this line to activate
-
-        return [
-            'waka.maillog.some_permission' => [
-                'tab' => 'waka.maillog::lang.plugin.name',
-                'label' => 'waka.maillog::lang.permissions.some_permission',
-                'roles' => [UserRole::CODE_DEVELOPER, UserRole::CODE_PUBLISHER],
-            ],
-        ];
     }
 
     /**

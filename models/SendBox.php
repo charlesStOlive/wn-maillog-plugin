@@ -265,7 +265,7 @@ class SendBox extends Model
         } catch (\Exception $ex) {
             //trace_log('j ai erreur');
             $this->state = 'Erreur';
-            $this->meta = $th->getMessage();
+            $this->meta = $ex->getMessage();
             $this->save();
             throw $ex;
         } catch (\Throwable $th) {
