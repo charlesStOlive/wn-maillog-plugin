@@ -1,4 +1,4 @@
-<?php namespace Waka\Mailer\Classes\Middleware;
+<?php namespace Waka\Maillog\Classes\Middleware;
 
 use ApplicationException;
 use Event;
@@ -40,7 +40,7 @@ class MailgunWebHook
     private function buildSignature($request)
     {
         $sk = null;
-        if($sk = \Config::get('waka.mailer::mailgun_webhooks.signing_key')) {
+        if($sk = \Config::get('waka.maillog::mailgun_webhooks.signing_key')) {
             $hashMac = hash_hmac(
                 'sha256',
                 sprintf('%s%s', $request->input('signature.timestamp'), $request->input('signature.token')), $sk);

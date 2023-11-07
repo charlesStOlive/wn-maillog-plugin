@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: waka.maillog::lang.controllers.sendboxes.label
+
+# Model Form Field configuration
+form: $/waka/maillog/models/sendbox/fields.yaml
+
+# Model Class name
+modelClass: Waka\MailLog\Models\SendBox
+
+# Default redirect location
+defaultRedirect: waka/maillog/sendboxs
+
+# Create page
+# create:
+#     title: backend::lang.form.create_title
+#     redirect: waka/maillog/sendboxs/update/:id
+#     redirectClose: waka/maillog/sendboxs
+
+# Update page
+# update:
+#     title: backend::lang.form.update_title
+#     redirect: waka/maillog/sendboxs/update/:id
+#     redirectClose: waka/maillog/sendboxs
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

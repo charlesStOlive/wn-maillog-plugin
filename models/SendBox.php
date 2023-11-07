@@ -91,10 +91,10 @@ class SendBox extends Model
      * @var array Relations
      */
     // public $hasOne = [
-    //     'last_log' => ['Waka\Mailer\Models\MailLog', 'scope' => 'latestOfMany']
+    //     'last_log' => ['Waka\MailLog\Models\MailLog', 'scope' => 'latestOfMany']
     // ];
     public $hasMany = [
-        'mail_logs' => ['Waka\Mailer\Models\MailLog'],
+        'mail_logs' => ['Waka\MailLog\Models\MailLog'],
     ];
     public $hasOneThrough = [];
     public $hasManyThrough = [];
@@ -138,10 +138,10 @@ class SendBox extends Model
 
     public function getParsedTosAttribute()
     {
-        if (is_array($this->config['tos'])) {
-            return  implode(', ', $this->metas['tos']);
+        if (is_array($this->tos)) {
+            return  implode(', ', $this->tos);
         } else {
-            return $this->config['tos'];
+            return $this->tos;
         }
     }
     public function getParsedVarsAttribute()

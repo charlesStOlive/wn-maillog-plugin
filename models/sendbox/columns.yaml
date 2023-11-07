@@ -4,35 +4,35 @@
 
 columns:
     send_at:
-        label: waka.mailer::sendbox.send_at
+        label: waka.maillog::lang.models.sendbox.send_at
         type: datetime
         searchable: true
     state:
-        label: waka.mailer::sendbox.state
+        label: waka.maillog::lang.models.sendbox.state
         searchable: true
     tos:
-        label: Email
+        label: waka.maillog::lang.models.sendbox.email
         searchable: false
     maileable[name]:
-        label: Modèle
+        label: waka.maillog::lang.models.sendbox.model
         sortable: false
         searchable: false
     targeteable[name]:
-        label: Nom cible
+        label: waka.maillog::lang.models.sendbox.targeteable.name
         sortable: false
         searchable: false
     name:
-        label: Sujet
+        label: waka.maillog::lang.models.sendbox.name
         searchable: true
     lastlog:
-        label: waka.mailer::sendbox.lastlog
+        label: waka.maillog::lang.models.sendbox.lastlog
         type: partial
         searchable: false
         sortable: false
-        path: ~/plugins/waka/mailer/models/sendbox/_column_state.htm
+        path: ~/plugins/waka/maillog/models/sendbox/_column_state.htm
     
     has_pjs:
-        label: waka.mailer::sendbox.has_pjs
+        label: waka.maillog::lang.models.sendbox.has_pjs
         searchable: false
         sortable: false
     updated_at:

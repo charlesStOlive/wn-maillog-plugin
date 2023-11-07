@@ -1,0 +1,38 @@
+# ===================================
+#  WakaController | Workflow | Productor |  Behavior Config
+# ===================================
+
+
+modelClass: Waka\MailLog\Models\SendBox
+backendUrl: waka/maillog/sendboxs
+
+workflow: false 
+
+
+controllerConfig:
+    breadcrump:
+        inSettings: true 
+        title: waka.maillog::lang.models.sendbox.label
+        rows: 
+            index: 
+                label: waka.maillog::lang.controllers.sendboxes.label
+                url: waka/maillog/sendboxs 
+    index:
+        base:
+            create: 
+                show: false
+                permissions: [waka.maillog.*]
+            reorder: 
+                show: false  
+                permissions: []
+            delete: 
+                show: true
+                permissions: [ONLY_SA]
+        partials:
+            index_btn:
+                url: $/waka/maillog/controllers/sendboxs/_index_btn.php
+    update:
+        partials:
+            update_btn:
+                url: $/waka/maillog/controllers/sendboxs/_update_btn.php
+

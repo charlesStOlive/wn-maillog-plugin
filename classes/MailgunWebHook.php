@@ -7,7 +7,7 @@ use Event;
 use Closure;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
-use Waka\Mailer\Models\MailLog;
+use Waka\Maillog\Models\MailLog;
 
 class MailgunWebHook
 {

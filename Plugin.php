@@ -3,6 +3,7 @@
 use Backend;
 use Backend\Models\UserRole;
 use System\Classes\PluginBase;
+use Lang;
 
 /**
  * mailLog Plugin Information File
@@ -64,14 +65,19 @@ class Plugin extends PluginBase
     public function registerNavigation(): array
     {
         return []; // Remove this line to activate
+    }
 
+    public function registerSettings()
+    {
         return [
-            'maillog' => [
-                'label'       => 'waka.maillog::lang.plugin.name',
-                'url'         => Backend::url('waka/maillog/mycontroller'),
-                'icon'        => 'icon-leaf',
-                'permissions' => ['waka.maillog.*'],
-                'order'       => 500,
+            'sendBoxs' => [
+                'label' => Lang::get('waka.maillog::lang.menu.sendbox'),
+                'description' => Lang::get('waka.maillog::lang.menu.sendbox_description'),
+                'category' => Lang::get('waka.wutils::lang.menu.model_tasks'),
+                'icon' => 'icon-envelope',
+                'url' => Backend::url('waka/maillog/sendboxs'),
+                'permissions' => ['waka.maillog.admin.*'],
+                'order' => 30,
             ],
         ];
     }

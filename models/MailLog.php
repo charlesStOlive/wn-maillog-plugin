@@ -33,10 +33,6 @@ class MailLog extends Model
     public $rules = [
     ];
 
-    public $customMessages = [
-        'data_source.required' => 'waka.mailer::maillog.e.data_source',
-    ];
-
     /**
      * @var array attributes send to datasource for creating document
      */
@@ -87,7 +83,7 @@ class MailLog extends Model
     public $hasManyThrough = [
     ];
     public $belongsTo = [
-       'send_box' => ['Waka\Mailer\Models\SendBox'],
+       'send_box' => ['Waka\MailLog\Models\SendBox'],
     ];
     public $belongsToMany = [
     ];        

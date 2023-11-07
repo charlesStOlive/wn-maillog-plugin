@@ -1,4 +1,7 @@
-'1.0.0':
+1.0.0:
     - 'First version of mailLog'
     - create_mail_logs_table.php
     - create_send_boxes_table.php
+1.0.1:
+    - 'Ajout de sessionCode'
+    - v1.0.1/create_session_codes_table.php

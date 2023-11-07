@@ -1,0 +1,8 @@
+files:
+    maillog:
+        title: Maillog
+        category_slug: "modules"
+        comment: "Gestion des logs, sendboxs et codes de session"
+        permission: waka.docser.modules
+        relativePath: waka/maillog/docs
+        sort_order: 1000
