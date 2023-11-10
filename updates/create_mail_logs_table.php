@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('maileable_id')->nullable();
             $table->string('maileable_type')->nullable();
             $table->string('logeable_type')->nullable();
-            $table->integer('logeable_id')->nullable();
+            $table->string('logeable_id')->nullable();
             $table->string('type')->nullable();
             $table->text('meta')->nullable();
             $table->text('tags')->nullable();
