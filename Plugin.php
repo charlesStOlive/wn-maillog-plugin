@@ -40,6 +40,24 @@ class Plugin extends PluginBase
     }
 
     /**
+     * Register model to clean.
+     *
+     * @return void
+     */
+    public function registerModelToClean()
+    {
+        $nbdays = \Config::get('wcli.wconfig::anonymize.sendBox', 7);
+        return [
+            'anonymize' => [
+                \Waka\Maillog\Models\SendBox::class => [
+                    'nb_day' => $nbdays,
+                    'column' => 'created_at',
+                ],
+            ],
+        ];
+    }
+
+    /**
      * Registers any frontend components implemented in this plugin.
      */
     public function registerComponents(): array
