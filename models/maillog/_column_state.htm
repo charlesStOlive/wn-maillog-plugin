@@ -1,13 +1,13 @@
 <?php if($value == 'delivered') : ?>
-<span class="text-success oc-icon-circle-o">Mail envoyé</span>
+<span class="text-success oc-icon-circle-o"><?php Lang::get('waka.maillog::lang.models.maillog.sended')?></span>
 <?php elseif($value == 'failure') : ?>
-<span class="text-danger  oc-icon-minus-circle">Hard Bounce</span>
+<span class="text-danger  oc-icon-minus-circle"><?php Lang::get('waka.maillog::lang.models.maillog.hard_bounce')?></span>
 <?php elseif($value == 'temp_fail') : ?>
-<span class="text-danger oc-icon-circle-o">Soft Bounce</span>
+<span class="text-danger oc-icon-circle-o"><?php Lang::get('waka.maillog::lang.models.maillog.soft_bounce')?></span>
 <?php elseif($value == 'opened') : ?>
-<span class="text-success oc-icon-circle">Ouvert</span>
+<span class="text-success oc-icon-circle"><?php Lang::get('')?><?php Lang::get('waka.maillog::lang.models.maillog.open')?></span>
 <?php elseif($value == 'clicked') : ?>
-<span class="text-success oc-icon-dot-circle-o">Clique</span>
+<span class="text-success oc-icon-dot-circle-o"><?php Lang::get('waka.maillog::lang.models.maillog.clicked')?></span>
 <?php else : ?>
 <?=e($value)?>
 <?php endif ?>

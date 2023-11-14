@@ -125,8 +125,8 @@ class SendSendBox implements WakajobQueueJob
             $jobManager->completeJob(
                 $this->jobId,
                 [
-                'Message' => $mails->count().' '. \Lang::get('waka.mailog::lang.jobs.sendbox.job_title'),
-                'waka.mailog::lang.jobs.sendbox.job_send' => $send,
+                'Message' => $mails->count().' '. \Lang::get('waka.maillog::lang.jobs.sendbox.job_title'),
+                'waka.maillog::lang.jobs.sendbox.job_send' => $send,
                 ]
             );
         } catch (\Exception $ex) {
