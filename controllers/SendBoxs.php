@@ -18,7 +18,7 @@ class SendBoxs extends Controller
         \Waka\Wutils\Behaviors\WakaControllerBehavior::class,
     ];
 
-    public $requiredPermissions = ['waka.maillog.*'];
+    public $requiredPermissions = ['waka.maillog.admin.*'];
 
     public function __construct()
     {

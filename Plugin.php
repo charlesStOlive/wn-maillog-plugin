@@ -23,21 +23,6 @@ class Plugin extends PluginBase
         ];
     }
 
-    /**
-     * Register method, called when the plugin is first registered.
-     */
-    public function register(): void
-    {
-
-    }
-
-    /**
-     * Boot method, called right before the request route.
-     */
-    public function boot(): void
-    {
-
-    }
 
     /**
      * Register model to clean.
@@ -58,32 +43,25 @@ class Plugin extends PluginBase
     }
 
     /**
-     * Registers any frontend components implemented in this plugin.
+     * Registers any back-end permissions used by this plugin.
+     *
+     * @return array
      */
-    public function registerComponents(): array
+    public function registerPermissions()
     {
-        return []; // Remove this line to activate
-
         return [
-            'Waka\MailLog\Components\MyComponent' => 'myComponent',
+            'waka.maillog.admin.base' => [
+                'tab' => 'Waka - Maillog',
+                'label' => 'Administrateur de maillog',
+            ],
+             'waka.maillog.admin.super' => [
+                'tab' => 'Waka - Maillog',
+                'label' => 'Super admin de maillog',
+            ],
         ];
     }
 
-    /**
-     * Registers any backend permissions used by this plugin.
-     */
-    public function registerPermissions(): array
-    {
-        return []; // Remove this line to activate
-    }
-
-    /**
-     * Registers backend navigation items for this plugin.
-     */
-    public function registerNavigation(): array
-    {
-        return []; // Remove this line to activate
-    }
+    
 
     public function registerSettings()
     {
