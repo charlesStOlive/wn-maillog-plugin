@@ -5,3 +5,6 @@
 1.0.1:
     - 'Ajout de sessionCode'
     - v1.0.1/create_session_codes_table.php
+1.0.2:
+    - 'Ajout de key sur  sessionCode et de la classe SessionCodeTrait'
+    - v1.0.2/update_session_codes_table.php
