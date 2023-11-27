@@ -13,7 +13,7 @@ trait SessionCodeTrait
     /*
      * Constructor
      */
-    public static function bootSessionCode()
+    public static function bootSessionCodeTrait()
     {
         static::extend(function ($model) {
             /*
