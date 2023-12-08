@@ -25,16 +25,16 @@ class MailgunWebHook
      */
     public function messageType(Request $request, $type)
     {
-        //trace_log('message reception');
+        //trace_log('message reception---------------------------------');
         //trace_log($request->all());
         //trace_log('messageType');
         $logVars = $request->input('event-data.user-variables');
 
         if (!$logVars) {
-            //\Log::error('Pas de log var on enregistre rien dans MailgunWebHook');
+            \Log::error('Pas de log var on enregistre rien dans MailgunWebHook');
             return response()->json('Success!', 200);
         } else {
-            //trace_log($logVars);
+            //trace_log('il y a du logvars!!!', $logVars);
         }
         $email = $request->input('event-data.recipient');
         //trace_log($email);
@@ -42,8 +42,8 @@ class MailgunWebHook
         $mailLogData = [
             'name' => $email,
             'send_box_id' => $logVars['send_box_id'] ?? null,
-            'maileable_id' => $logVars['mail_id'] ?? null,
-            'maileable_type' => $logVars['mail_type'] ?? null, //todotargeteable
+            'maileable_id' => $logVars['maileable_id'] ?? null,
+            'maileable_type' => $logVars['maileable_type'] ?? null, //todotargeteable
             'logeable_type' => $logVars['ds'] ?? null,
             'logeable_id' => $logVars['ds_id'] ?? null,
             'type' => $type,
