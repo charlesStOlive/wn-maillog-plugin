@@ -66,21 +66,5 @@ class MailgunWebHook
         return response()->json('Success!', 200);
     }
 
-    // public function checkMorphMap($className, $name = false)
-    // {
-    //     if (!$className) return;
-    //     if (substr($className, 0, 1) === "\\") {
-    //         $className = substr($className, 1);
-    //     }
-    //     $morphClassMaps = \Winter\Storm\Database\Relations\Relation::morphMap();
-    //     foreach ($morphClassMaps as $morphName => $morphClass) {
-    //         // trace_log($morphClass ."  ==  ".$className."  ==  ".$morphName);
-    //         if ($morphClass ==  $className) {
-    //             return $name ? $morphName : $morphClass;
-    //         } else if ($morphName ==  $className) {
-    //             return $name ? $morphName : $morphClass;
-    //         }
-    //     }
-    //     return $className;
-    // }
+    
 }

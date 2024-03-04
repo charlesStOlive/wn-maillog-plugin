@@ -41,10 +41,10 @@ trait SessionCodeTrait
        
     }
 
-    public static function findBySessionCode($code, $key = 'default')
+    public static function findBySessionCode($code, $key = ['default'])
     {
         $model = self::whereHas('session_code', function ($q) use ($code, $key) {
-            return $q->where('code', $code)->where('key', $key)->where('end_at', '>=', \Carbon\Carbon::now());
+            return $q->where('code', $code)->whereIn('key', $key)->where('end_at', '>=', \Carbon\Carbon::now());
         })->first();
 
         if (!$model) {
@@ -57,7 +57,7 @@ trait SessionCodeTrait
         if($existing = $this->checkExistingSessionCode($key)) {
             $existing->delete();
         }
-        $this->session_code()->create([
+        return $this->session_code()->create([
             'end_type' => $type,
             'key' => $key,
         ]);
@@ -67,27 +67,27 @@ trait SessionCodeTrait
 
     public function createShortSessionCode($key = 'default')
     {
-        $this->createSessionCode('5m', $key);
+        return $this->createSessionCode('5m', $key);
     }
 
     public function createHourSessionCode($key = 'default')
     {
-        $this->createSessionCode('1h', $key);
+        return $this->createSessionCode('1h', $key);
     }
 
     public function createDaySessionCode($key = 'default')
     {
-        $this->createSessionCode('24h', $key);
+        return $this->createSessionCode('24h', $key);
     }
 
     public function createWeekSessionCode($key = 'default')
     {
-        $this->createSessionCode('1w', $key);
+        return $this->createSessionCode('1w', $key);
     }
 
     public function createMonthSessionCode($key = 'default')
     {
-        $this->createSessionCode('1Mo', $key);
+        return $this->createSessionCode('1Mo', $key);
     }
 
 }
