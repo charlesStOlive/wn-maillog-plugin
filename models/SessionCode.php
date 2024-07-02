@@ -79,7 +79,7 @@ class SessionCode extends Model
     /**
      *EVENTS=========================================
      **/
-    public function beforeSave() {
+    public function beforeCreate() {
         if(!$this->end_type) {
             $this->end_type = '5m';
         }

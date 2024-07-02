@@ -20,25 +20,17 @@ trait SessionCodeTrait
              * Define relationships
              */
             $model->morphMany['session_code'] = [\Waka\Maillog\Models\SessionCode::class, 'name' => 'sessioneable'];
-            // $model->bindEvent('model.beforeDelete', function () use ($model) {
-            // });
-            // $model->bindEvent('model.beforeValidate', function () use ($model) { 
-            // });
-            // $model->bindEvent('model.beforeSave', function () use ($model) {
-            // });
-            // $model->bindEvent('model.afterSave', function () use ($model) {
-            // });
         });
     }
 
-    public function checkExistingSessionCode($key) {
+    public function checkExistingSessionCode($key)
+    {
         $q = $this->session_code()->where('key', $key);
-        if($q->exists()) {
+        if ($q->exists()) {
             return $q;
         } else {
             return null;
         }
-       
     }
 
     public static function findBySessionCode($code, $key = ['default'])
@@ -53,17 +45,26 @@ trait SessionCodeTrait
         return $model;
     }
 
-    public function createSessionCode($type, $key) {
-        if($existing = $this->checkExistingSessionCode($key)) {
-            $existing->delete();
+    public function createSessionCode($type, $key = 'default')
+    {
+        $existing = $this->session_code()->where('key', $key)->where('end_at', '>=', \Carbon\Carbon::now())->first();
+
+        if ($existing) {
+            // If the session code exists and is not expired, update the end_type and end_at date
+            $existing->end_type = $type;
+            $existing->end_at = $existing->getEndKeyAt();
+            $existing->save();
+            return $existing;
+        } else {
+            // If the session code does not exist or is expired, create a new session code
+            return $this->session_code()->create([
+                'end_type' => $type,
+                'key' => $key,
+            ]);
         }
-        return $this->session_code()->create([
-            'end_type' => $type,
-            'key' => $key,
-        ]);
     }
 
-    
+
 
     public function createShortSessionCode($key = 'default')
     {
@@ -88,6 +89,17 @@ trait SessionCodeTrait
     public function createMonthSessionCode($key = 'default')
     {
         return $this->createSessionCode('1Mo', $key);
+    }
+
+    // //
+    public function dsGetSessionCode($key, $field, $opt)
+    {
+        $key = $this->dsGetValueFrom($key, $field,  $opt);
+
+        $sessionKey = $field['params']['key'] ?? 'default';
+        $type = $field['params']['type'] ?? '1w';
+
+        return $this->createSessionCode($type, $sessionKey)->toArray();
     }
 
 }
