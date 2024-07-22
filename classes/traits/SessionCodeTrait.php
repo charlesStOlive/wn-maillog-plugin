@@ -91,6 +91,11 @@ trait SessionCodeTrait
         return $this->createSessionCode('1Mo', $key);
     }
 
+    public function createQuarterSessionCode($key = 'default')
+    {
+        return $this->createSessionCode('1Q', $key);
+    }
+
     // //
     public function dsGetSessionCode($key, $field, $opt)
     {

@@ -134,6 +134,9 @@ class SessionCode extends Model
             case '1Mo':
                 return $date->addMonth()->toDateTimeString();
                 break;
+            case '1Q':
+                return $date->addMonths(3)->toDateTimeString();
+                break;
         }
     }
 
