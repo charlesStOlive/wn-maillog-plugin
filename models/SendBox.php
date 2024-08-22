@@ -203,6 +203,8 @@ class SendBox extends Model
     {
         return $this->maileable()->pluck('name', 'id')->unique();
     }
+
+
     public function send()
     {
         if ($this->state == "Envoyé") {
@@ -212,13 +214,14 @@ class SendBox extends Model
         }
 
         try {
+            $tempFiles = [];
 
-            \Mail::raw([], function ($message) {
+            \Mail::raw([], function ($message) use($tempFiles) {
+                
 
                 $contenu = $this->content;
                 if ($this->is_embed) {
-                    //embedAll change les src des images et crée les $message->embed(...)
-                    $contenu = $this->embedAllImages($message);
+                    $contenu = $this->embedAllImages($contenu, $message, $tempFiles);
                 }
 
                 $message->html($contenu);
@@ -258,6 +261,9 @@ class SendBox extends Model
                 }
                 //trace_log("ok4");
             });
+            foreach($tempFiles as $file) {
+                $file->delete();
+            }
             $this->state = 'Envoyé';
             $this->send_at = \Carbon\Carbon::now();
             $this->save();
@@ -277,12 +283,10 @@ class SendBox extends Model
             throw $th;
         }
     }
-    public function embedAllImages($message)
+    public function embedAllImages($content, &$envelope, array &$tempFiles)
     {
-        $tempFiles = new \Waka\Utils\Models\TempFile;
         $regex = '/<img\s.*?src=(?:\'|")([^\'">]+)(?:\'|")/';
-        $html = $this->content;
-        $result = preg_replace_callback($regex, function ($match) use ($tempFiles, $message) {
+        $result = preg_replace_callback($regex, function ($match) use ($tempFiles, $envelope) {
             //trace_log($match);
             $file = new \System\Models\File;
             $srcUrl = $match[1];
@@ -293,13 +297,13 @@ class SendBox extends Model
                     $srcUrl = url($srcUrl);
                 }
                 $file->fromUrl($srcUrl);
-                $tempFiles->files()->add($file);
+                $tempFiles[] = $file;
                 $path = $file->getLocalPath();
-                $cid = $message->embed($path);
+                $cid = $envelope->embed($path);
                 $match[0] = str_replace($match[1], $cid,  $match[0]);
                 return $match[0];
             };
-        }, $this->content);
+        }, $content);
         return $result;
     }
     //endKeep/
